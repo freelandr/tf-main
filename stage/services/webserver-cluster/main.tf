@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "webserver_cluster" {
-  source = "../../../modules/services/webserver-cluster"
+  source = "git@github.com:freelandr/tf-modules.git//services/webserver-cluster?ref=v0.0.1"
 
   cluster_name           = "webservers-stage"
   db_remote_state_bucket = "terraform-state-bucket-11112"
@@ -14,11 +14,11 @@ module "webserver_cluster" {
 }
 
 resource "aws_security_group_rule" "allow_testing_inbound" {
-  type = "ingress"
+  type              = "ingress"
   security_group_id = module.webserver_cluster.alb_security_group_id
 
-  from_port = 12345
-  to_port = 12345
-  protocol = "tcp"
+  from_port   = 12345
+  to_port     = 12345
+  protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
 }
