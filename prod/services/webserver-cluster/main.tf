@@ -10,6 +10,7 @@ module "webserver_cluster" {
   db_remote_state_key         = "prod/data-storage/mysql/terraform.tfstate"
   instance_type               = "t2.micro"
   server_ami                  = "ami-0fb653ca2d3203ac1"
+  server_text                 = "I'm a production webserver"  
   enable_autoscaling_schedule = true
   min_size                    = 1
   max_size                    = 1
