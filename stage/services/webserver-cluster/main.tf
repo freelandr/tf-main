@@ -3,14 +3,16 @@ provider "aws" {
 }
 
 module "webserver_cluster" {
-  source = "git@github.com:freelandr/tf-modules.git//services/webserver-cluster?ref=v0.0.1"
+  source = "git@github.com:freelandr/tf-modules.git//services/webserver-cluster?ref=main"
 
-  cluster_name           = "webservers-stage"
-  db_remote_state_bucket = "terraform-state-bucket-11112"
-  db_remote_state_key    = "stage/services/webserver-cluster/terraform.tfstate"
-  instance_type          = "t2.micro"
-  min_size               = 1
-  max_size               = 1
+  cluster_name                = "webservers-stage"
+  db_remote_state_bucket      = "terraform-state-bucket-11112"
+  db_remote_state_key         = "stage/data-storage/mysql/terraform.tfstate"
+  instance_type               = "t2.micro"
+  server_ami                  = "ami-0fb653ca2d3203ac1"
+  enable_autoscaling_schedule = false
+  min_size                    = 1
+  max_size                    = 1
 }
 
 resource "aws_security_group_rule" "allow_testing_inbound" {
