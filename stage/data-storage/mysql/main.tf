@@ -3,8 +3,8 @@ provider "aws" {
 }
 
 module "mysql" {
-  source         = "git@github.com:freelandr/tf-modules.git//data-storage/mysql?ref=v0.0.1"
-  cluster_name   = "db-stage"
+  source         = "git@github.com:freelandr/tf-modules.git//data-storage/mysql?ref=main"
+  cluster_name   = "stage"
   instance_class = "db.t2.micro"
 }
 
